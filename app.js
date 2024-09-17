@@ -1,19 +1,24 @@
 const { Client } = require("whatsapp-web.js");
 const qrcode = require("qrcode-terminal");
-const express = require("express");
-const router = require("./router");
+const cron = require("node-cron");
 
 const client = new Client();
-const server = express();
-
-server.use(router);
-
+const db = ["37493705670@c.us", "37498222474@c.us", "37493104064@c.us"];
+let i = 0;
 client.on("qr", (qr) => {
-  qrcode.generate(qr);
+  qrcode.generate(qr, { small: true });
 });
 
 client.on("ready", () => {
   console.log("Client is ready!");
+  cron.schedule("* * * * *", () => {
+    if (db[i]) {
+      client.sendMessage(db[i], "test");
+      i++;
+    } else {
+      client.sendMessage("37493705670@c.us", "test");
+    }
+  });
 });
 
 client.on("message_create", (msg) => {
@@ -26,4 +31,4 @@ client.on("message_create", (msg) => {
 });
 
 client.initialize();
-server.listen(8080);
+server.listen(80);
