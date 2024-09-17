@@ -31,4 +31,3 @@ client.on("message_create", (msg) => {
 });
 
 client.initialize();
-server.listen(80);
