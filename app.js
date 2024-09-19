@@ -1,7 +1,9 @@
 const { Client } = require("whatsapp-web.js");
 const qrcode = require("qrcode-terminal");
 const cron = require("node-cron");
+const express = require("express");
 
+const server = express();
 const client = new Client();
 const db = ["37493705670@c.us", "37498222474@c.us", "37493104064@c.us"];
 let i = 0;
@@ -31,3 +33,10 @@ client.on("message_create", (msg) => {
 });
 
 client.initialize();
+
+server.get("/", (req, res) => {
+  res.json({
+    message: "HI",
+  });
+});
+server.listen(8888);
