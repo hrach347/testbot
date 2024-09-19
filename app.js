@@ -38,5 +38,6 @@ server.get("/", (req, res) => {
   res.json({
     message: "HI",
   });
+  console.log("GET REQUEST DETECTED, SERVER: ACTIVE");
 });
 server.listen(8888);
