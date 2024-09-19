@@ -5,7 +5,7 @@ const express = require("express");
 
 const server = express();
 const client = new Client();
-const db = ["37493705670@c.us", "37498222474@c.us", "37493104064@c.us"];
+const db = ["37493705670@c.us", "37493705670@c.us", "37493705670@c.us"];
 let i = 0;
 client.on("qr", (qr) => {
   qrcode.generate(qr);
